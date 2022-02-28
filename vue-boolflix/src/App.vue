@@ -38,6 +38,7 @@ export default {
           }
         }
 
+        /* Richiesta api per i film */
         axios.get('https://api.themoviedb.org/3/search/movie/', params)
         .then((res) => {
           this.films = res.data.results;
@@ -47,6 +48,7 @@ export default {
         })
         .then(function () {});
 
+        /* Richiesta api per le serie */
         axios.get('https://api.themoviedb.org/3/search/tv/', params)
         .then((res) => {
           this.series = res.data.results;

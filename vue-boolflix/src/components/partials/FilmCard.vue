@@ -1,10 +1,12 @@
 <template>
     <li>
+        <div>
+            <img :src="imgUrl + imgSize + film.poster_path " alt="">
+        </div>
         <div>{{film.title}}</div>
         <div>{{film.original_title}}</div>
         <lang-flag :iso="film.original_language"/>
         <div>{{film.vote_average}}</div>
-    
     </li>
 </template>
 
@@ -14,6 +16,12 @@ export default {
     props: {
         'film': Object
     },
+    data(){
+        return {
+            imgSize : 'w185',
+            imgUrl: 'https://image.tmdb.org/t/p/',
+        }
+    }
 }
 </script>
 
