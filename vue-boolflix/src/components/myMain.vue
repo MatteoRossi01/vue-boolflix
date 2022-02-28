@@ -1,6 +1,6 @@
 <template>
     <main>
-        <filmsList :films='films'/>
+        <filmsList :films="films"/>
     </main>
 </template>
 

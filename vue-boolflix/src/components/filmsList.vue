@@ -1,15 +1,18 @@
 <template>
     <div>
-
+        <FilmCard v-for="(film, index) in films" :key="index" :film='film' />
     </div>
-    
 </template>
 
 <script>
+import FilmCard from "./partials/FilmCard.vue"
 export default {
-    name: 'flimsList',
+    name: 'filmsList',
     props: {
         'films': Array,
+    },
+    components: {
+        FilmCard,
     }
 }
 </script>

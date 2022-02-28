@@ -21,18 +21,24 @@ export default {
   data() {
     return {
       films: [],
+      api_key: 'd227d9e9d2016a56da2e5f786a0d9c9f',
+      language: 'it-IT',
     }
   },
 
   methods: {
       getFilm(keyword) {
-
         console.log(keyword)
+        const params = {
+          params: {
+            'api_key': this.api_key,
+            'query': keyword,
+            'language': this.language
+          }
+        }
 
-        axios.get('https://api.themoviedb.org/3/movie/550?api_key=d227d9e9d2016a56da2e5f786a0d9c9f&query=casa&lenguage=it-IT')
+        axios.get('https://api.themoviedb.org/3/search/movie/', params)
         .then((response) => {
-
-          console.log(response)
           this.films = response.data.results;
         })
         .catch(function (error) {
