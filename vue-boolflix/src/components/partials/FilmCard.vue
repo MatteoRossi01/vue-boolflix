@@ -6,16 +6,23 @@
         <div>{{film.title}}</div>
         <div>{{film.original_title}}</div>
         <lang-flag :iso="film.original_language"/>
-        <div>{{film.vote_average}}</div>
+        <StarVote :film="film"/>
     </li>
 </template>
 
 <script>
+import StarVote from './StarVote.vue'
+
 export default {
     name: 'FilmCard',
-    props: {
-        'film': Object
+    components: {
+        StarVote,
     },
+    props: {
+        'film': Object,
+        'serie': Object
+    },
+    
     data(){
         return {
             imgSize : 'w185',
