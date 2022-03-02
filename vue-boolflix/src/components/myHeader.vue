@@ -35,6 +35,8 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        position: fixed;
+        z-index: 2;
 
         .logo {
             img {
@@ -51,7 +53,7 @@
             input {
                 margin-right: 15px;
                 background-color: rgb(37, 37, 37);
-                padding: 2px 8px;
+                padding: 4px 8px;
                 border: 0px solid;
                 border-radius: 5px;
                 color: #fff;

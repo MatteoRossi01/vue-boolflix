@@ -1,7 +1,15 @@
 <template>
     <main>
-        <filmsList :films="films"/>
-        <seriesList :series="series"/> 
+
+        <div class="box-prod">
+            <div class="box-film">
+                <filmsList :films="films"/>
+            </div>
+            <div class="box-film">
+                <seriesList :series="series"/>
+            </div>
+        </div>
+        
     </main>
 </template>
 
@@ -22,6 +30,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+    main {
+        background-color: rgb(37, 37, 37);
+        min-height: 100vh;
+
+        .box-prod {
+            padding-top: 100px;
+            width: 80%;
+            margin: auto;
+
+            .box-film {
+                min-height: 250px;
+            }
+        }
+    }
 
 </style>
