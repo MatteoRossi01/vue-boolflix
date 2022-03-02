@@ -42,6 +42,7 @@ export default {
         axios.get('https://api.themoviedb.org/3/search/movie/', params)
         .then((res) => {
           this.films = res.data.results;
+          console.log(this.films)
         })
         .catch(function (error) {
           console.log(error);

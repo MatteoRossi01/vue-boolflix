@@ -15,6 +15,14 @@
                         <span class="text-prod">Titolo originale:</span>
                         {{serie.original_name}}
                     </div>
+                    <div class="prod">
+                        <span class="text-prod">Attori:</span>
+                        <span v-for="(actor, index) in casts" :key="index"> {{actor.name}}, </span>   
+                    </div>
+                    <div class="prod">
+                        <span class="text-prod">Genere:</span>
+                        <span v-for="(genere, index) in generi" :key="index"> {{genere.name}}, </span>   
+                    </div>
                     <div class="star-box">
                         <font-awesome-icon class="star" v-for="(star, index) in votes" :key="index" :icon="star" />
                         <lang-flag class="lang" :iso="serie.original_language"/>
@@ -31,6 +39,8 @@
 </template>
 
 <script>
+const axios = require('axios');
+
 export default {
     name: 'SerieCard',
 
@@ -45,7 +55,12 @@ export default {
             voteFive: 0,
             votes: [],
             solidStar: 'fa-solid fa-star',
-            regularStar: 'fa-regular fa-star'
+            regularStar: 'fa-regular fa-star',
+            casts: [],
+            generi: [],
+            api_key: 'd227d9e9d2016a56da2e5f786a0d9c9f',
+            id : this.serie.id,
+            language : 'it_IT',
         }
     },
 
@@ -60,13 +75,38 @@ export default {
             while(this.votes.length < 5){
                 this.votes.push(this.regularStar);
             }
-
-            
         },
 
+        getActors() {
+            axios.get(`https://api.themoviedb.org/3/tv/${this.id}/credits?api_key=${this.api_key}&language=${this.language}`)
+            .then((res) => {
+                // handle success
+                this.casts = res.data.cast.splice(0, 5);
+                console.log(this.casts)   
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {});    
+        },
+
+        getGenres() {
+            axios.get(`https://api.themoviedb.org/3/tv/${this.id}?api_key=${this.api_key}&language=${this.language}`)
+            .then((res) => {
+                // handle success
+                this.generi = res.data.genres;
+                console.log(this.generi)   
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {});    
+        },
     },
     created(){
         this.getStar();
+        this.getActors();
+        this.getGenres();
     }
 }
 </script>
