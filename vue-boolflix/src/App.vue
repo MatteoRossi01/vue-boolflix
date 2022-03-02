@@ -64,5 +64,6 @@ export default {
 </script>
 
 <style>
+  @import "./assets/style/general.scss";
 
 </style>
